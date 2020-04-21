@@ -13,7 +13,6 @@ import {AuthoringWorkspaceService} from '../services/AuthoringWorkspaceService';
 import {copyJson} from 'core/helpers/utils';
 import {extensions} from 'core/extension-imports.generated';
 import {onPublishMiddlewareResult, IExtensionActivationResult} from 'superdesk-api';
-import {IArticle} from 'superdesk-api';
 
 /**
  * @ngdoc directive
@@ -458,7 +457,7 @@ export function AuthoringDirective(
                         }
                         return $q.reject(false);
                     })
-                    .then((response: IArticle) => {
+                    .then((response) => {
                         notify.success(gettext('Item published.'));
                         $scope.item = response;
                         $scope.dirty = false;
@@ -700,7 +699,7 @@ export function AuthoringDirective(
             };
 
             $scope.publishAndContinue = function() {
-                $scope.publish(true).then((published: boolean) => {
+                $scope.publish(true).then((published) => {
                     if (published) {
                         authoring.rewrite($scope.item);
                     }
@@ -712,10 +711,10 @@ export function AuthoringDirective(
 
             // Close the current article, create an update of the article and open it in the edit mode.
             $scope.closeAndContinue = function() {
-                $scope.close().then(() => {
-                    authoring.rewrite($scope.item);
-                });
+                $scope.close().then(authoring.rewrite($scope.item));
             };
+
+            $scope.canRewriteArticle = () => authoring.itemActions($scope.item).re_write;
 
             $scope.deschedule = function() {
                 $scope.item.publish_schedule = null;
