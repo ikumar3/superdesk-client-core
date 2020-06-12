@@ -16,8 +16,8 @@ interface IProps {
 }
 
 interface IState {
-    desks: IDesk[];
-    stages: IStage[];
+    desks: Array<IDesk>;
+    stages: Array<IStage>;
     currentTab: string;
 }
 
@@ -28,7 +28,7 @@ export class MasterDesk extends React.Component<IProps, IState> {
         this.state = {
             currentTab: 'overview',
             desks: [],
-            stages: []
+            stages: [],
         };
     }
 
@@ -46,9 +46,10 @@ export class MasterDesk extends React.Component<IProps, IState> {
             case 'overview':
                 return <OverviewComponent desks={this.state.desks} stages={this.state.stages} />;
             case 'users':
-                return <UsersComponent desks={this.state.desks} apiService={this.props.api} deskService={this.props.desks} />
+                return <UsersComponent desks={this.state.desks}
+                    apiService={this.props.api} deskService={this.props.desks} />;
             case 'assignments':
-                return <AssignmentsComponent desks={this.state.desks} tasks={this.props.tasks} />
+                return <AssignmentsComponent desks={this.state.desks} tasks={this.props.tasks} />;
 
             default:
                 return <OverviewComponent desks={this.state.desks} stages={this.state.stages} />;

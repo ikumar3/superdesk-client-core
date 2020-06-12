@@ -4,13 +4,11 @@ import { IDesk, IStage } from 'superdesk-api';
 import { gettext } from 'core/utils';
 
 interface IProps {
-    desks: IDesk[];
-    stages: IStage[];
+    desks: Array<IDesk>;
+    stages: Array<IStage>;
 }
 
-interface IState { }
-
-export class OverviewComponent extends React.Component<IProps, IState> {
+export class OverviewComponent extends React.Component<IProps, {}> {
     constructor(props: IProps) {
         super(props);
     }
@@ -31,18 +29,25 @@ export class OverviewComponent extends React.Component<IProps, IState> {
                             <div className="sd-board__content-block">
                                 <ul className="sd-board__list">
                                     <li className="sd-board__list-item">
-                                        <span className="sd-board__item-count--large">{this.getTotalItems(desk)}</span>
+                                        <span className="sd-board__item-count--large">
+                                            {this.getTotalItems(desk)}
+                                        </span>
                                         <p className="sd-board__count-label">{gettext('items in production')}</p>
                                         <div className="sd-board__doughnut-chart">
-                                            <span className="sd-board__doughnut-chart-number">{this.getTotalItems(desk)}</span>
+                                            <span className="sd-board__doughnut-chart-number">
+                                                {this.getTotalItems(desk)}
+                                            </span>
                                         </div>
                                     </li>
-                                    {this.props.stages && this.props.stages[desk._id] ? this.props.stages[desk._id].map((stage, index) => (
-                                        <li className="sd-board__list-item" key={index}>
-                                            <h6 className="sd-board__list-item-title">{stage.name}</h6>
-                                            <span className="badge orange--600 sd-margin-r--0-5">{stage.total || 0}</span>
-                                        </li>
-                                    )) : null}
+                                    {this.props.stages && this.props.stages[desk._id] ?
+                                        this.props.stages[desk._id].map((stage, i) => (
+                                            <li className="sd-board__list-item" key={i}>
+                                                <h6 className="sd-board__list-item-title">{stage.name}</h6>
+                                                <span className="badge orange--600 sd-margin-r--0-5">
+                                                    {stage.total || 0}
+                                                </span>
+                                            </li>
+                                        )) : null}
                                 </ul>
                             </div>
                         </div>

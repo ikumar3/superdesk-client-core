@@ -17,7 +17,7 @@ export class HeaderComponent extends React.Component<IProps, IState> {
         super(props);
 
         this.state = {
-            currentTab: 'overview'
+            currentTab: 'overview',
         };
 
         this.changeTab.bind(this);
@@ -37,7 +37,7 @@ export class HeaderComponent extends React.Component<IProps, IState> {
                             <RadioButton value={this.state.currentTab} options={[
                                 { value: 'overview', label: gettext('Overview') },
                                 { value: 'users', label: gettext('Users') },
-                                { value: 'assignments', label: gettext('Assignments') }
+                                { value: 'assignments', label: gettext('Assignments') },
                             ]} onChange={(value) => this.changeTab(value)} />
                         </CheckButtonGroup>
                     </div>

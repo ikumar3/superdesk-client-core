@@ -4,7 +4,7 @@ import { IDesk } from 'superdesk-api';
 import { gettext } from 'core/utils';
 
 interface IProps {
-    desks: IDesk[];
+    desks: Array<IDesk>;
     tasks: any;
 }
 
@@ -17,13 +17,13 @@ export class AssignmentsComponent extends React.Component<IProps, IState> {
         super(props);
 
         this.state = {
-            statuses: []
-        }
+            statuses: [],
+        };
     }
 
     componentDidMount() {
         const tasks = this.props.tasks;
-        this.setState({ statuses: tasks.statuses })
+        this.setState({ statuses: tasks.statuses });
     }
 
     getTotalItems() {
@@ -44,12 +44,18 @@ export class AssignmentsComponent extends React.Component<IProps, IState> {
                                     <li className="sd-board__list-item">
                                         <span className="sd-board__item-count--large">30</span>
                                         <p className="sd-board__count-label sd-board__count-label--l">
-                                            {gettext('unassigned items of')} <strong>98</strong> {gettext('in production')}
+                                            {gettext('unassigned items of')}
+                                            <strong>98</strong>
+                                            {gettext('in production')}
                                         </p>
                                     </li>
-                                    {this.state.statuses.map((status, index) => (
-                                        <li className="sd-board__list-item" key={index}>
-                                            <h6 className={'sd-board__list-item-title sd-board__list-item-title--' + status._id}>{status.name}</h6>
+                                    {this.state.statuses.map((status, i) => (
+                                        <li className="sd-board__list-item" key={i}>
+                                            <h6 className={
+                                                'sd-board__list-item-title sd-board__list-item-title--' + status._id
+                                            }>
+                                                {status.name}
+                                            </h6>
                                             <span className="badge orange--600 sd-margin-r--0-5">{0}</span>
                                         </li>
                                     ))}

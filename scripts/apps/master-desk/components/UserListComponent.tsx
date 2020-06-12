@@ -21,8 +21,8 @@ export class UserListComponent extends React.Component<IProps, IState> {
 
         this.state = {
             users: [],
-            total: 0
-        }
+            total: 0,
+        };
     }
 
     componentDidMount() {
@@ -31,14 +31,14 @@ export class UserListComponent extends React.Component<IProps, IState> {
         let users = [], total = 0;
         deskMembers.forEach((user) => {
             if (this.props.role._id === user.role) {
-                users.push(user)
+                users.push(user);
                 total = total + 1;
             }
         });
 
         this.setState({
             users: users,
-            total: total
+            total: total,
         });
     }
 
@@ -57,18 +57,22 @@ export class UserListComponent extends React.Component<IProps, IState> {
                             </div>
                             <div className="sd-list-item__column sd-list-item__column--grow sd-list-item__column--no-border">
                                 <div className="sd-list-item__row">
-                                    <span className="sd-overflow-ellipsis sd-list-item--element-grow">{user.display_name}</span>
+                                    <span className="sd-overflow-ellipsis sd-list-item--element-grow">
+                                        {user.display_name}
+                                    </span>
                                     {/* <span className="sd-text-icon sd-text-icon--aligned-r user-items--locked"><i className="icon-lock"></i>3</span>
                                     <span className="sd-text-icon sd-text-icon--aligned-r user-items--assigned"><i className="icon-pick"></i>2</span> */}
                                 </div>
                             </div>
                             <div className="sd-list-item__action-menu">
                                 <button className="icn-btn">
-                                    <span className="sd-accessibility__btn-text--invisible">{gettext('More actions')}</span>
+                                    <span className="sd-accessibility__btn-text--invisible">
+                                        {gettext('More actions')}
+                                    </span>
                                     <i className="icon-dots-vertical"></i>
                                 </button>
                             </div>
-                        </li>
+                        </li>,
                     )}
                 </ul>
             </React.Fragment> : null
