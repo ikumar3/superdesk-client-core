@@ -58,7 +58,7 @@ export class MasterDesk extends React.Component<IProps, IState> {
 
     render() {
         return (
-            <div>
+            <div className="sd-content-wrapper__main-content-area sd-main-content-grid">
                 <HeaderComponent onTabChange={(tab) => this.setState({ currentTab: tab })} />
                 <div className="sd-main-content-grid__content">
                     <div className="sd-main-content-grid__content-inner">
