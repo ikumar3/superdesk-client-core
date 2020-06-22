@@ -60,8 +60,8 @@ export class UserListComponent extends React.Component<IProps, IState> {
                                     <span className="sd-overflow-ellipsis sd-list-item--element-grow">
                                         {user.display_name}
                                     </span>
-                                    {/* <span className="sd-text-icon sd-text-icon--aligned-r user-items--locked"><i className="icon-lock"></i>3</span>
-                                    <span className="sd-text-icon sd-text-icon--aligned-r user-items--assigned"><i className="icon-pick"></i>2</span> */}
+                                    <span className="sd-text-icon sd-text-icon--aligned-r user-items--locked"><i className="icon-lock"></i>0</span>
+                                    <span className="sd-text-icon sd-text-icon--aligned-r user-items--assigned"><i className="icon-pick"></i>0</span>
                                 </div>
                             </div>
                             <div className="sd-list-item__action-menu">
