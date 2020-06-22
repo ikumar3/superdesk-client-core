@@ -38,7 +38,7 @@ export class AssignmentsComponent extends React.Component<IProps, IState> {
             <div className="sd-grid-list sd-grid-list--medium sd-grid-list--gap-xl sd-margin-x--5">
                 {this.props.desks.map((desk, index) => (
                     <CardComponent desk={desk}
-                        label={gettext('unassigned items of')} key={index}>
+                        label={gettext('unassigned items of') + ' 0 ' + gettext('in production')} key={index}>
                         {this.state.statuses.map((status, i) => (
                             <CardListComponent name={status.name} total={0} key={i}/>
                         ))}
