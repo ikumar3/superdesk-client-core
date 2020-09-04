@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { IDesk } from 'superdesk-api';
-import { gettext } from 'core/utils';
+import {IDesk} from 'superdesk-api';
+import {gettext} from 'core/utils';
 
-import { CardComponent } from './CardComponent';
-import { CardListComponent } from './CardListComponent'; 
+import {CardComponent} from './CardComponent';
+import {CardListComponent} from './CardListComponent';
 
 interface IProps {
     desks: Array<IDesk>;
@@ -26,7 +26,8 @@ export class AssignmentsComponent extends React.Component<IProps, IState> {
 
     componentDidMount() {
         const tasks = this.props.tasks;
-        this.setState({ statuses: tasks.statuses });
+
+        this.setState({statuses: tasks.statuses});
     }
 
     getTotalItems() {

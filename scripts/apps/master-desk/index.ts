@@ -1,6 +1,6 @@
-import { gettext } from 'core/utils';
-import { reactToAngular1 } from 'superdesk-ui-framework';
-import { MasterDesk } from './MasterDesk';
+import {gettext} from 'core/utils';
+import {reactToAngular1} from 'superdesk-ui-framework';
+import {MasterDesk} from './MasterDesk';
 
 const styles = 'margin-top: 48px';
 
@@ -13,7 +13,7 @@ angular.module('superdesk.apps.master-desk', [])
                 priority: 100,
                 template: require('./views/master-desk.html'),
                 sideTemplateUrl: 'scripts/apps/workspace/views/workspace-sidenav.html',
-                privileges: { desks: 1 },
+                privileges: {desks: 1},
             });
 
         workspaceMenuProvider.item({

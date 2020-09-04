@@ -1,8 +1,9 @@
 import React from 'react';
+import classNames from 'classnames';
 
-import { UserAvatar } from 'apps/users/components/UserAvatar';
-import { IDesk, IUserRole } from 'superdesk-api';
-import { gettext } from 'core/utils';
+import {UserAvatar} from 'apps/users/components/UserAvatar';
+import {IDesk, IUserRole} from 'superdesk-api';
+import {gettext} from 'core/utils';
 
 interface IProps {
     desk: IDesk;
@@ -29,6 +30,7 @@ export class UserListComponent extends React.Component<IProps, IState> {
         const deskMembers = this.props.deskService.deskMembers[this.props.desk._id];
 
         let users = [], total = 0;
+
         deskMembers.forEach((user) => {
             if (this.props.role._id === user.role) {
                 users.push(user);
@@ -49,31 +51,49 @@ export class UserListComponent extends React.Component<IProps, IState> {
                     <h5 className="sd-board__subheader-title">{this.props.role.name}</h5>
                 </div>
                 <ul className="sd-list-item-group sd-shadow--z2">
-                    {this.state.users.map((user, index) =>
-                        <li className="sd-list-item" key={index}>
-                            <div className="sd-list-item__border"></div>
-                            <div className="sd-list-item__column sd-list-item__column--no-border sd-padding-x--0-5">
-                                <UserAvatar user={user} displayStatus={true} />
-                            </div>
-                            <div className="sd-list-item__column sd-list-item__column--grow sd-list-item__column--no-border">
-                                <div className="sd-list-item__row">
-                                    <span className="sd-overflow-ellipsis sd-list-item--element-grow">
-                                        {user.display_name}
-                                    </span>
-                                    <span className="sd-text-icon sd-text-icon--aligned-r user-items--locked"><i className="icon-lock"></i>0</span>
-                                    <span className="sd-text-icon sd-text-icon--aligned-r user-items--assigned"><i className="icon-pick"></i>0</span>
+                    {
+                        this.state.users.map((user, index) => (
+                            <li className="sd-list-item" key={index}>
+                                <div className="sd-list-item__border" />
+                                <div
+                                    className={classNames(
+                                        'sd-list-item__column',
+                                        'sd-list-item__column--no-border',
+                                        'sd-padding-x--0-5',
+                                    )}
+                                >
+                                    <UserAvatar user={user} displayStatus={true} />
                                 </div>
-                            </div>
-                            <div className="sd-list-item__action-menu">
-                                <button className="icn-btn">
-                                    <span className="sd-accessibility__btn-text--invisible">
-                                        {gettext('More actions')}
-                                    </span>
-                                    <i className="icon-dots-vertical"></i>
-                                </button>
-                            </div>
-                        </li>,
-                    )}
+                                <div
+                                    className={classNames(
+                                        'sd-list-item__column',
+                                        'sd-list-item__column--grow',
+                                        'sd-list-item__column--no-border,',
+                                    )}
+                                >
+                                    <div className="sd-list-item__row">
+                                        <span className="sd-overflow-ellipsis sd-list-item--element-grow">
+                                            {user.display_name}
+                                        </span>
+                                        <span className="sd-text-icon sd-text-icon--aligned-r user-items--locked">
+                                            <i className="icon-lock" />0
+                                        </span>
+                                        <span className="sd-text-icon sd-text-icon--aligned-r user-items--assigned">
+                                            <i className="icon-pick" />0
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="sd-list-item__action-menu">
+                                    <button className="icn-btn">
+                                        <span className="sd-accessibility__btn-text--invisible">
+                                            {gettext('More actions')}
+                                        </span>
+                                        <i className="icon-dots-vertical" />
+                                    </button>
+                                </div>
+                            </li>
+                        ))
+                    }
                 </ul>
             </React.Fragment> : null
         );

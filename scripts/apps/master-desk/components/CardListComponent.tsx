@@ -14,6 +14,6 @@ export class CardListComponent extends React.Component<IProps, {}> {
                     {this.props.total || 0}
                 </span>
             </li>
-        )
+        );
     }
 }

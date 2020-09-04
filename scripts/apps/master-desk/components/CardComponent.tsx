@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IDesk } from 'superdesk-api';
+import {IDesk} from 'superdesk-api';
 
 interface IProps {
     desk: IDesk;
@@ -8,10 +8,6 @@ interface IProps {
 }
 
 export class CardComponent extends React.Component<IProps, {}> {
-    constructor(props: IProps) {
-        super(props);
-    }
-
     getTotalItems(desk: IDesk) {
         return 0;
     }
@@ -41,6 +37,6 @@ export class CardComponent extends React.Component<IProps, {}> {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }

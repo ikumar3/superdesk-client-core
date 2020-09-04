@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { UserListComponent } from './UserListComponent';
-
-import { IDesk, IUserRole } from 'superdesk-api';
+import {UserListComponent} from './UserListComponent';
+import {IDesk, IUserRole} from 'superdesk-api';
 
 interface IProps {
     desks: Array<IDesk>;
@@ -27,7 +26,7 @@ export class UsersComponent extends React.Component<IProps, IState> {
         const api = this.props.apiService;
 
         api('roles').query().then((result) => {
-            this.setState({ roles: result._items });
+            this.setState({roles: result._items});
         });
     }
 
@@ -40,10 +39,14 @@ export class UsersComponent extends React.Component<IProps, IState> {
                             <h3 className="sd-board__header-title">{desk.name}</h3>
                         </div>
                         <div className="sd-board__content sd-padding-t--1">
-                            {this.state.roles.map((role, i) =>
-                                <UserListComponent key={i} desk={desk} role={role}
-                                    deskService={this.props.deskService} />,
-                            )}
+                            {this.state.roles.map((role, i) => (
+                                <UserListComponent
+                                    key={i}
+                                    desk={desk}
+                                    role={role}
+                                    deskService={this.props.deskService}
+                                />
+                            ))}
                         </div>
                     </div>,
                 )}
