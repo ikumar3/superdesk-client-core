@@ -105,7 +105,6 @@ class Monitoring {
     closeHighlightsPopup: () => void;
     checkMarkedForDesk: (desk: any, group: any, item: any) => void;
     closeMarkedForDeskPopup: () => void;
-    checkMarkedForMultiHighlight: (highlight: any, group: any, item: any) => void;
     removeFromFirstHighlight: (group: any, item: any) => void;
     removeFromFirstDesk: (group: any, item: any) => void;
     selectDesk: (desk: any) => void;
@@ -329,12 +328,14 @@ class Monitoring {
             return element(by.className('dropdown--compact-state'));
         };
 
-        this.previewAction = function(group, item) {
-            browser.wait(ECE.elementToBeClickable(this.getItem(group, item)));
-            this.getItem(group, item).click();
+        this.previewAction = function(groupIndex, itemIndex) {
+            const item = this.getItem(groupIndex, itemIndex);
+
+            browser.wait(ECE.elementToBeClickable(item));
+            item.click();
             var preview = element(by.id('item-preview'));
 
-            waitFor(preview);
+            waitFor(preview, 5000);
         };
 
         this.closePreview = function() {
@@ -734,10 +735,12 @@ class Monitoring {
         this.checkMarkedForHighlight = function(highlight, group, item) {
             var crtItem = this.getItem(group, item);
 
-            crtItem.element(by.className('icon-star')).click();
-            var highlightList = element(by.className('highlights-list-menu'));
+            el(['highlights-indicator'], null, crtItem).click();
 
-            waitFor(highlightList);
+            var highlightList = el(['highlights-list']);
+
+            browser.wait(ECE.presenceOf(highlightList));
+
             expect(highlightList.getText()).toContain(highlight);
         };
 
@@ -773,24 +776,6 @@ class Monitoring {
             element(by.className('highlights-list-menu'))
                 .element(by.className('icon-close-small'))
                 .click();
-        };
-
-        /**
-         * Check if on monitoring view an item from group is marked for highlight
-         * @param {string} highlight
-         * @param {number} group
-         * @param {number} item
-         */
-        this.checkMarkedForMultiHighlight = function(highlight, group, item) {
-            var crtItem = this.getItem(group, item);
-            var star = crtItem.element(by.className('icon-multi-star'));
-
-            expect(star.isPresent()).toBe(true);
-            star.click();
-            var highlightList = element(by.className('highlights-list-menu'));
-
-            waitFor(highlightList);
-            expect(highlightList.getText()).toContain(highlight);
         };
 
         /**
